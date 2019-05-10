@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-rest-app';
+  title = 'Angular REST App';
+  links = [
+    { path: '/home', icon: 'home', label: 'Home'},
+    { path: '/items', icon: 'list', label: 'Items'}
+  ];
 }

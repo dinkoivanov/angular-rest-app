@@ -9,7 +9,7 @@ import { WidgetsService, Widget } from '../shared';
 export class WidgetsComponent implements OnInit {
 
   widgets: Widget[];
-  selectedWidget = null;
+  selectedWidget: Widget = null;
 
   constructor(private widgetsService: WidgetsService) { }
 
@@ -17,7 +17,7 @@ export class WidgetsComponent implements OnInit {
     this.widgets = this.widgetsService.widgets;
   }
 
-  selected(widget) {
+  selected(widget: Widget) {
     this.selectedWidget = widget;
   }
 }

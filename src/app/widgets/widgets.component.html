@@ -27,23 +27,24 @@
 
     <!-- WIDGET DETAILS -->
     <div class="col-50">
-      <mat-card>
+      <mat-card *ngIf="selectedWidget; else prompt">
         <mat-card-header>
           <mat-card-title>
             <h1>
-              Select a Widget
+              {{selectedWidget.name}}
             </h1>
           </mat-card-title>
         </mat-card-header>
         <form>
           <mat-card-content>
-            {{selectedWidget.name}}
+            <pre>{{selectedWidget | json}}</pre>            
           </mat-card-content>
           <mat-card-actions>
             <button type="submit" mat-button>Save</button>
-            <button type="button" mat-button>Cancel</button>
+            <button type="button" (click)="selected(null)" mat-button>Cancel</button>
           </mat-card-actions>
         </form>
       </mat-card>
+      <ng-template #prompt>Select a widget</ng-template>
     </div>
   </div>

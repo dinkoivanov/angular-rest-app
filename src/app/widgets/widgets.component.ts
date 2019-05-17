@@ -18,7 +18,7 @@ export class WidgetsComponent implements OnInit {
     this.reset();
   }
 
-  selected(widget: Widget) {
+  onSelect(widget: Widget) {
     this.selectedWidget = widget;
   }
 
@@ -26,11 +26,15 @@ export class WidgetsComponent implements OnInit {
     this.selectedWidget = { id: null, name: '', description: ''};
   }
 
-  saved(widget: Widget) {
+  onSave(widget: Widget) {
     console.log('SAVING', widget);
   }
 
-  cancelled(widget: Widget) {
+  onDelete(widget: Widget) {
+    console.log('DELETING', widget);
+  }
+
+  onCancel(widget: Widget) {
     this.reset();
 }
 }

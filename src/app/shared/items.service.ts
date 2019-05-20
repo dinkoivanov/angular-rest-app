@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Item } from './item.model';
 import { Observable } from 'rxjs';
@@ -31,4 +31,10 @@ export class ItemsService {
     return this.http.delete<Item>(`${BASE_URL}${item.id}`);
   }
 
+  search(term: string): Observable<Item[]> {
+    const params = new HttpParams();
+    params.append('q', term);
+
+    return this.http.get<Item[]>(`${BASE_URL}`, {params});
+  }
 }

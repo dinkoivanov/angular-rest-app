@@ -21,4 +21,8 @@ export class HomeComponent implements OnInit {
     this.itemsService.all()
       .subscribe(items => this.items = items);
   }
+
+  handleResults(items: Item[]) {
+    this.items = items;
+  }
 }

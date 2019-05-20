@@ -14,8 +14,11 @@ export class WidgetsComponent implements OnInit {
   constructor(private widgetsService: WidgetsService) { }
 
   ngOnInit() {
-    this.widgets = this.widgetsService.widgets;
+    this.getWidgets();
     this.reset();
+  }
+  getWidgets() {
+    this.widgetsService.all().subscribe(widgets => this.widgets = widgets);
   }
 
   onSelect(widget: Widget) {
@@ -27,11 +30,35 @@ export class WidgetsComponent implements OnInit {
   }
 
   onSave(widget: Widget) {
-    console.log('SAVING', widget);
+    if (!widget.id) {
+      this.createWidget(widget);
+    } else {
+      this.updateWidget(widget);
+    }
+  }
+
+  createWidget(widget: Widget) {
+    this.widgetsService.create(widget)
+      .subscribe(response => {
+        this.getWidgets();
+        this.reset();
+      });
+  }
+
+  updateWidget(widget: Widget) {
+    this.widgetsService.update(widget)
+      .subscribe(response => {
+        this.getWidgets();
+        this.reset();
+      });
   }
 
   onDelete(widget: Widget) {
-    console.log('DELETING', widget);
+    this.widgetsService.delete(widget)
+      .subscribe(response => {
+        this.getWidgets();
+        this.reset();
+      });
   }
 
   onCancel(widget: Widget) {

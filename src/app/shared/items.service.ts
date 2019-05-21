@@ -32,9 +32,9 @@ export class ItemsService {
   }
 
   search(term: string): Observable<Item[]> {
-    const params = new HttpParams();
-    params.append('q', term);
+    term = term.trim();
+    const options = term ? { params: new HttpParams().set('q', term) } : {};
 
-    return this.http.get<Item[]>(`${BASE_URL}`, {params});
+    return this.http.get<Item[]>(`${BASE_URL}`, options);
   }
 }

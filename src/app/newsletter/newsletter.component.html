@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1>Newsletter</h1>
+    </mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="subscriber" novalidate (submit)="subscribe(subscriber)">
+    <mat-card-content>
+      <mat-form-field class="full-width">
+        <input type="text" matInput placeholder="Name" formControlName="name">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input type="text" matInput placeholder="Email" formControlName="email">
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="submit" mat-button>Subscribe!</button>
+      <button type="button" (click)="reset()" mat-button>Cancel</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

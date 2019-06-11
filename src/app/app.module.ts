@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -17,6 +17,10 @@ import { HomeComponent } from './home/home.component';
 import { WidgetsComponent } from './widgets/widgets.component';
 import { WidgetsListComponent } from './widgets/widgets-list/widgets-list.component';
 import { WidgetDetailsComponent } from './widgets/widget-details/widget-details.component';
+import { ItemsSearchComponent } from './items/items-search/items-search.component';
+import { NewsletterComponent } from './newsletter/newsletter.component';
+import { Item2Component } from './item2/item2.component';
+import { Item2DetailComponent } from './item2-detail/item2-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { WidgetDetailsComponent } from './widgets/widget-details/widget-details.
     ItemDetailComponent,
     WidgetsComponent,
     WidgetsListComponent,
-    WidgetDetailsComponent
+    WidgetDetailsComponent,
+    ItemsSearchComponent,
+    NewsletterComponent,
+    Item2Component,
+    Item2DetailComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -35,7 +43,8 @@ import { WidgetDetailsComponent } from './widgets/widget-details/widget-details.
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    AppMaterialModule
+    AppMaterialModule,
+    ReactiveFormsModule
   ],
   providers: [ItemsService],
   bootstrap: [AppComponent]

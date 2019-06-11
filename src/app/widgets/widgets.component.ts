@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WidgetsService, Widget } from '../shared';
+import { NotificationService } from '../shared/notification.service';
 
 @Component({
   selector: 'app-widgets',
@@ -11,11 +12,17 @@ export class WidgetsComponent implements OnInit {
   widgets: Widget[];
   selectedWidget: Widget = null;
 
-  constructor(private widgetsService: WidgetsService) { }
+  constructor(private widgetsService: WidgetsService,
+              private ns: NotificationService) { }
 
   ngOnInit() {
-    this.widgets = this.widgetsService.widgets;
+    this.getWidgets();
     this.reset();
+  }
+
+  getWidgets() {
+    this.widgetsService.loadAll().subscribe(
+      widgets => this.widgets = widgets);
   }
 
   onSelect(widget: Widget) {
@@ -27,11 +34,34 @@ export class WidgetsComponent implements OnInit {
   }
 
   onSave(widget: Widget) {
-    console.log('SAVING', widget);
+    if (widget.id) {
+      this.widgetsService.update(widget).subscribe(
+        widget => {
+          this.getWidgets();
+          this.reset();
+          this.ns.notify('Widget updated');
+        }
+      );
+    } else {
+      this.widgetsService.create(widget).subscribe(
+        widget => {
+          this.getWidgets();
+          this.reset();
+          this.ns.notify('Widget created');
+        }
+      );
+    }
   }
 
   onDelete(widget: Widget) {
-    console.log('DELETING', widget);
+    let name = widget.name;
+    this.widgetsService.delete(widget).subscribe(
+      widget => {
+        this.getWidgets();
+        this.reset();
+        this.ns.notify(`Widget '${name}' deleted`);
+      }
+    );
   }
 
   onCancel(widget: Widget) {

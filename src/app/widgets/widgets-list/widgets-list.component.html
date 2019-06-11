@@ -11,7 +11,10 @@
           *ngFor="let widget of widgets"
           (click)="select.emit(widget)">
           <h3 mat-line>{{widget.name}}</h3>
-          <button mat-icon-button (click)="delete.emit(widget); $event.stopImmediatePropagation()">
+          <button 
+                mat-icon-button
+                *ngIf="!readonly"
+                (click)="delete.emit(widget); $event.stopImmediatePropagation()">
             <mat-icon>close</mat-icon>
           </button>
           <p mat-line>

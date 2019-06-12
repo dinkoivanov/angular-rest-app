@@ -12,6 +12,7 @@ const routes: Routes = [
   {path: 'items2', component: Item2Component},
   {path: 'items2/:id', component: Item2DetailComponent},
   {path: 'widgets', component: WidgetsComponent},
+  {path: 'manja', loadChildren: './manja/manja.module#ManjaModule'},
   {path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
